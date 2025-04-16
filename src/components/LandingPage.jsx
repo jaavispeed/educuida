@@ -7,7 +7,7 @@ const LandingPage = () => {
     const navigate = useNavigate();
 
     const handleContinue = () => {
-        // Aquí podrías guardar el nombre en contexto o estado global si lo necesitas
+        localStorage.setItem('userName', name); // Guardar el nombre en localStorage
         navigate('/home', {
             replace: true
         })

@@ -1,12 +1,24 @@
 import { HeartPulse, Clock3, SmilePlus, ClipboardList } from "lucide-react";
+import { useEffect, useState } from "react";
 
 const Home = () => {
+
+  const [userName, setUserName] = useState('');
+
+  useEffect(() => {
+      // Obtener el nombre del localStorage cuando el componente se monte
+      const storedName = localStorage.getItem('userName');
+      if (storedName) {
+          setUserName(storedName);
+      }
+  }, []);
+
   return (
     <div className="min-h-screen bg-[#F2EFE7] flex items-center justify-center p-4">
       <div className="w-full max-w-4xl space-y-10 text-center">
         <h1 className="text-5xl font-bold text-[#006A71] flex items-center justify-center gap-4 flex-wrap">
-          <HeartPulse className="text-[#9ACBD0] min-w-[24px] min-h-[24px]" size={40} />
-          Evalúa tu Sobrecarga
+        <HeartPulse className="text-[#9ACBD0] min-w-[24px] min-h-[24px]" size={40} />
+        {userName ? `${userName}, evalúa tu sobrecarga` : 'Evalúa tu sobrecarga'}
         </h1>
 
         <ul className="space-y-6 text-xl text-gray-800 text-left">
