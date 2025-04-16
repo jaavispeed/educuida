@@ -6,7 +6,7 @@ export const QuestionsFrequentlyData = [
     },
     {
         question: "¿Qué tipo de recomendaciones recibiré?",
-        response: "Dependiendo de tu puntaje, recibirás mensajes emocionales y tips kinesicos fáciles de realizar.",
+        response: "Dependiendo de tus respuestas, recibirás mensajes emocionales y tips kinesicos fáciles de realizar.",
     },
     {
         question: "¿Cuánto tiempo toma hacer el cuestionario?",
