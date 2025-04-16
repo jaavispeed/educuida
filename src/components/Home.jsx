@@ -1,3 +1,4 @@
+
 const Home = () => {
   return (
     <section className="min-h-screen bg-[#F2EFE7] flex items-center justify-center px-4 py-10">

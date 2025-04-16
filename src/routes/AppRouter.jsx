@@ -1,15 +1,21 @@
-import { BrowserRouter, Navigate, Route, Routes } from "react-router"
+import { Navigate, Route, Routes, useLocation } from "react-router"
 import Home from '../components/home.jsx'
+import WhatName from "../components/WhatName.jsx"
+import QuestionsFrequently from "../components/QuestionsFrequently.jsx"
 
 
 export const AppRouter = () => {
+    const location = useLocation()
+
     return (
-        <BrowserRouter>
+        <>
             <Routes>
-                <Route path="/" element={<Home />}></Route>
+                <Route path="/" element={<WhatName />}></Route>
+                <Route path="/home" element={<Home />}></Route>
                 <Route path="/" element={<Navigate to="/" />}></Route>
                 <Route path="*" element={<Navigate to="/" />}></Route>
             </Routes>
-        </BrowserRouter>
+            {location.pathname === "/home" && <QuestionsFrequently />}
+        </>
     )
 }
