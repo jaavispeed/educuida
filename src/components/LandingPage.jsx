@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 
 const LandingPage = () => {
@@ -6,8 +6,15 @@ const LandingPage = () => {
 
     const navigate = useNavigate();
 
+    useEffect(() => {
+        const storedName = localStorage.getItem('userName');
+        if (storedName) {
+            setName(storedName);
+        }
+    }, []);
+
     const handleContinue = () => {
-        localStorage.setItem('userName', name); // Guardar el nombre en localStorage
+        localStorage.setItem('userName', name);
         navigate('/home', {
             replace: true
         })
