@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes, useLocation } from "react-router"
-import Home from '../components/home.jsx'
+import Home from '../components/Home.jsx'
 import WhatName from "../components/WhatName.jsx"
 import QuestionsFrequently from "../components/QuestionsFrequently.jsx"
 
