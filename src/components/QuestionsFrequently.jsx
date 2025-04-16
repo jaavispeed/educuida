@@ -19,7 +19,7 @@ const QuestionsFrequently = () => {
             <div key={index} className="border border-[#9ACBD0] rounded-lg overflow-hidden">
               <button
                 onClick={() => toggleIndex(index)}
-                className="w-full flex items-center justify-between px-4 py-3 bg-[#48A6A7] hover:bg-[#9ACBD0] text-white font-medium transition duration-300"
+                className="w-full flex items-center justify-between px-4 py-3 bg-[#48A6A7] hover:bg-[#006A71] text-white font-medium transition duration-300"
               >
                 {item.question}
                 <span className="text-xl font-bold">

@@ -24,7 +24,7 @@ const WhatName = () => {
                 />
                 <button
                     onClick={handleSubmit}
-                    className="w-full p-2 bg-[#48a6a7] text-white rounded-md hover:bg-[#a7006a] focus:outline-none"
+                    className="w-full p-2 bg-[#48a6a7] text-white rounded-md hover:bg-[#006A71] focus:outline-none"
                 >
                     Guardar Nombre
                 </button>
