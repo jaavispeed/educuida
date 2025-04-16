@@ -1,5 +1,5 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router"
-import Home from '../components/Home.jsx'
+import Home from '../components/home.jsx'
 
 
 export const AppRouter = () => {
