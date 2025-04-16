@@ -1,29 +1,53 @@
+import React from 'react';
+import { useNavigate } from 'react-router';
+import { CheckCircle } from 'lucide-react';
 
 const Home = () => {
+  const navigate = useNavigate();
+
+  const handleStart = () => {
+    navigate('/cuestionario');
+  };
+
   return (
-    <section className="min-h-screen bg-[#F2EFE7] flex items-center justify-center px-4 py-10">
-      <div className="max-w-3xl w-full bg-white rounded-2xl shadow-lg p-8 sm:p-10 md:p-12 space-y-6">
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#006A71] text-center">
-          ¡Bienvenida/o a tu espacio de autocuidado!
+    <div className="min-h-screen flex items-center justify-center bg-[#F2EFE7] px-4 sm:px-6 md:px-10">
+      <div className="w-full max-w-5xl text-center py-16">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-[#006A71] mb-8 leading-tight">
+          Conoce cómo te sientes
         </h1>
-        <p className="text-[#006A71] text-base sm:text-lg">
-          Sabemos que cuidar de otra persona implica mucho amor, pero también puede ser agotador.
-          Esta plataforma está pensada especialmente para ti, que día a día entregas lo mejor de ti como cuidador/a.
+        <p className="text-lg sm:text-xl md:text-2xl text-[#484848] mb-10 px-2 sm:px-6">
+          Responde un breve cuestionario y accede a herramientas personalizadas para tu bienestar:
         </p>
-        <p className="text-[#006A71] text-base sm:text-lg">
-          Aquí podrás conocer tu nivel de sobrecarga física y emocional a través de un breve cuestionario. 
-          Según tus respuestas, recibirás recomendaciones simples y útiles para mejorar tu bienestar físico y emocional.
-        </p>
-        <p className="text-[#006A71] text-base sm:text-lg font-semibold text-center">
-          Tú también mereces cuidarte.
-        </p>
-        <div className="text-center">
-          <button className="bg-[#48A6A7] hover:bg-[#006A71] text-white font-bold py-3 px-6 rounded-full transition duration-300 cursor-pointer">
-          ¡Comienza ahora!
-          </button>
+
+        {/* Lista estilizada y responsive */}
+        <div className="flex flex-col gap-6 items-start sm:items-center mb-12 mx-auto w-full max-w-3xl px-4">
+          {[
+            'Detecta tu nivel de sobrecarga física y emocional.',
+            'Recibe recomendaciones prácticas y personalizadas.',
+            'Explora recursos pensados especialmente para personas cuidadoras.',
+          ].map((text, index) => (
+            <div
+              key={index}
+              className="flex items-start sm:items-center gap-4 w-full"
+            >
+              <div className="text-[#48A6A7] min-w-[28px] mt-1">
+                <CheckCircle size={28} />
+              </div>
+              <p className="text-base sm:text-lg md:text-xl text-[#484848]">
+                {text}
+              </p>
+            </div>
+          ))}
         </div>
+
+        <button
+          onClick={handleStart}
+          className="bg-[#006A71] text-white text-lg sm:text-xl px-8 sm:px-10 py-3 sm:py-4 rounded-2xl hover:bg-[#48A6A7] transition-all shadow-md cursor-pointer"
+        >
+          Iniciar cuestionario
+        </button>
       </div>
-    </section>
+    </div>
   );
 };
 
