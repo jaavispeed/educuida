@@ -2,7 +2,7 @@ import { Navigate, Route, Routes, useLocation } from "react-router"
 import Home from '../components/Home.jsx'
 import LandingPage from "../components/LandingPage.jsx"
 import QuestionsFrequently from "../components/QuestionsFrequently.jsx"
-import Test from "../components/test.jsx"
+import Test from "../components/Test.jsx"
 
 
 export const AppRouter = () => {
