@@ -4,7 +4,6 @@ import LandingPage from "../components/LandingPage.jsx"
 import QuestionsFrequently from "../components/QuestionsFrequently.jsx"
 import Test from "../components/Test.jsx"
 
-
 export const AppRouter = () => {
     const location = useLocation()
 
@@ -14,7 +13,6 @@ export const AppRouter = () => {
                 <Route path="/" element={<LandingPage />}></Route>
                 <Route path="/home" element={<Home />}></Route>
                 <Route path="/test" element={<Test />}></Route>
-                <Route path="/" element={<Navigate to="/" />}></Route>
             </Routes>
             {location.pathname === "/home" && <QuestionsFrequently />}
         </>
