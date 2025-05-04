@@ -55,7 +55,7 @@ const Test = () => {
                 ...kinesiologicalTipsNivelBajo.pausasActivas
             ];
         } else if (points <= 10) {
-            title = "NIVEL MEDIO: “Haz una pausa y escucha tu cuerpo y mente”";
+            title = "Haz una pausa, escucha tu cuerpo y mente";
             messages = [
                 "Tu cuerpo y mente te están pidiendo una pausa. Escúchalo con amabilidad.",
                 "Está bien detenerse un momento. Hoy, intenta darte 5 minutos solo para ti.",
@@ -66,7 +66,7 @@ const Test = () => {
                 ...kinesiologicalTipsNivelMedio.estiramientos.hombros
             ];
         } else {
-            title = "NIVEL ALTO: “Te estás sobrecargando, respira”";
+            title = "Te estás sobrecargando, respira";
             messages = [
                 "Hoy estás cargando mucho, permítete parar un momento.",
                 "Sabemos que estás dando todo, pero tú también necesitas cuidado.",
