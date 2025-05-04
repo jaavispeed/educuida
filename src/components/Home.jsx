@@ -13,8 +13,13 @@ const Home = () => {
     })
   }
 
+  const handleContinue = () => {
+    navigate('/test', {
+        replace: true
+    })
+};
+
   useEffect(() => {
-      // Obtener el nombre del localStorage cuando el componente se monte
       const storedName = localStorage.getItem('userName');
       if (storedName) {
           setUserName(storedName);
@@ -64,7 +69,7 @@ const Home = () => {
         </ul>
 
         <div className="pt-6">
-          <button className="w-full sm:w-auto bg-[#006A71] hover:bg-[#48A6A7] text-white text-lg font-semibold py-3 px-8 rounded-2xl shadow-md transition-colors cursor-pointer">
+          <button onClick={handleContinue} className="w-full sm:w-auto bg-[#006A71] hover:bg-[#48A6A7] text-white text-lg font-semibold py-3 px-8 rounded-2xl shadow-md transition-colors cursor-pointer">
             Inicia el cuestionario
           </button>
         </div>
