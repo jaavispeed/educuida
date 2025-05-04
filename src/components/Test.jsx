@@ -174,7 +174,7 @@ const Test = () => {
                         <button
                             onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 0))}
                             disabled={currentPage === 0}
-                            className="px-4 py-2 bg-[#48A6A7] hover:bg-[#006A71] text-white rounded-lg disabled:opacity-50 cursor-pointer"
+                            className="px-4 py-2 bg-[#006A71] hover:bg-[#48A6A7] text-white rounded-lg disabled:opacity-50 cursor-pointer"
                         >
                             Anterior
                         </button>
@@ -185,7 +185,7 @@ const Test = () => {
                                 )
                             }
                             disabled={(currentPage + 1) * 3 >= tips.length}
-                            className="px-4 py-2 bg-[#48A6A7] hover:bg-[#006A71] text-white rounded-lg disabled:opacity-50 cursor-pointer"
+                            className="px-4 py-2 bg-[#006A71] hover:bg-[#48A6A7] text-white rounded-lg disabled:opacity-50 cursor-pointer"
                         >
                             Siguiente
                         </button>
@@ -215,7 +215,7 @@ const Test = () => {
                         <button
                             key={idx}
                             onClick={() => handleAnswer(option.points)}
-                            className="w-full bg-[#48A6A7] hover:bg-[#006A71] text-white font-medium py-3 px-6 rounded-xl text-xl transition duration-200 cursor-pointer"
+                            className="w-full bg-[#006A71] hover:bg-[#48A6A7] text-white font-medium py-3 px-6 rounded-xl text-xl transition duration-200 cursor-pointer"
                         >
                             {option.text}
                         </button>
