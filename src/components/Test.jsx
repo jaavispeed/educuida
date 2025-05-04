@@ -135,8 +135,9 @@ const Test = () => {
                     </div>
 
                 </section>
+                <hr class="w-1/2 mx-auto my-5 border-t border-gray-400" />
 
-                <section ref={tipsRef} className="min-h-screen flex flex-col items-center justify-center p-6 space-y-6">
+                <section ref={tipsRef} className="min-h-screen flex flex-col items-center justify-center p-6 space-y-6 ">
                     <button onClick={scrollToTop} className="mt-8 animate-bounce cursor-pointer">
                         <ChevronUp size={48} className="text-[#006A71]" />
                     </button>
