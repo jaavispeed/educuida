@@ -151,21 +151,22 @@ const Test = () => {
                             .map((tip, idx) => (
                                 <div
                                     key={idx}
-                                    className="bg-white rounded-lg shadow-md p-4 flex flex-col items-center text-center max-w-xs mx-auto"
+                                    className="bg-white rounded-lg shadow-md p-6 flex flex-col items-center text-center max-w-xs mx-auto"
                                 >
-                                    <p className="text-[#006A71] font-medium text-base mb-2">
+                                    <p className="text-[#006A71] font-medium text-xl mb-4">
                                         {tip.tip}
                                     </p>
                                     {tip.image && (
                                         <img
                                             src={tip.image}
                                             alt={`Ejercicio ${idx}`}
-                                            className="w-full h-40 object-cover rounded-md"
+                                            className="w-full h-48 object-cover rounded-md mb-4"
                                         />
                                     )}
                                 </div>
                             ))}
                     </div>
+
 
                     <div className="flex gap-4 mt-6">
                         <button
