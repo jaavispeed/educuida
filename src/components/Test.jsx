@@ -72,7 +72,10 @@ const Test = () => {
             ];
             resultTips = [
                 ...kinesiologicalTipsNivelMedio.estiramientos.cabezaYCuello,
-                ...kinesiologicalTipsNivelMedio.estiramientos.hombros
+                ...kinesiologicalTipsNivelMedio.estiramientos.hombros,
+                ...kinesiologicalTipsNivelMedio.estiramientos.columnaLumbar,
+                ...kinesiologicalTipsNivelMedio.estiramientos.espaldaYbrazos,
+                ...kinesiologicalTipsNivelMedio.pausasActivas
             ];
         } else {
             title = "Te estás sobrecargando, respira";
