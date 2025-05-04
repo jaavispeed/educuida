@@ -127,9 +127,9 @@ const Test = () => {
                     </div>
 
 
-                    <div className="flex flex-col items-center mt-8">
+                    <div className="flex flex-col items-center mt-8 ">
                         <span className="text-[#006A71] font-semibold text-xl mb-2 animate-bounce">Recomendaciones</span>
-                        <button onClick={scrollToTips} className="animate-bounce">
+                        <button onClick={scrollToTips} className="animate-bounce cursor-pointer">
                             <ChevronDown size={48} className="text-[#006A71]" />
                         </button>
                     </div>
@@ -137,7 +137,7 @@ const Test = () => {
                 </section>
 
                 <section ref={tipsRef} className="min-h-screen flex flex-col items-center justify-center p-6 space-y-6">
-                    <button onClick={scrollToTop} className="mt-8 animate-bounce">
+                    <button onClick={scrollToTop} className="mt-8 animate-bounce cursor-pointer">
                         <ChevronUp size={48} className="text-[#006A71]" />
                     </button>
                     <div className="flex items-center gap-3">
@@ -174,7 +174,7 @@ const Test = () => {
                         <button
                             onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 0))}
                             disabled={currentPage === 0}
-                            className="px-4 py-2 bg-[#48A6A7] hover:bg-[#006A71] text-white rounded-lg disabled:opacity-50"
+                            className="px-4 py-2 bg-[#48A6A7] hover:bg-[#006A71] text-white rounded-lg disabled:opacity-50 cursor-pointer"
                         >
                             Anterior
                         </button>
@@ -185,7 +185,7 @@ const Test = () => {
                                 )
                             }
                             disabled={(currentPage + 1) * 3 >= tips.length}
-                            className="px-4 py-2 bg-[#48A6A7] hover:bg-[#006A71] text-white rounded-lg disabled:opacity-50"
+                            className="px-4 py-2 bg-[#48A6A7] hover:bg-[#006A71] text-white rounded-lg disabled:opacity-50 cursor-pointer"
                         >
                             Siguiente
                         </button>
@@ -215,7 +215,7 @@ const Test = () => {
                         <button
                             key={idx}
                             onClick={() => handleAnswer(option.points)}
-                            className="w-full bg-[#48A6A7] hover:bg-[#006A71] text-white font-medium py-3 px-6 rounded-xl text-xl transition duration-200"
+                            className="w-full bg-[#48A6A7] hover:bg-[#006A71] text-white font-medium py-3 px-6 rounded-xl text-xl transition duration-200 cursor-pointer"
                         >
                             {option.text}
                         </button>
