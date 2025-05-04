@@ -3,7 +3,10 @@
 
 body {
   font-family: "Urbanist", sans-serif;
-  overflow: hidden;
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }
 
 img {

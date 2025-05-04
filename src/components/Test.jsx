@@ -24,6 +24,8 @@ const Test = () => {
         navigate('/home', {
             replace: true
         })
+        window.scrollTo(0, 0); // Esta línea hace que el scroll se mueva a la parte superior.
+
     }
 
 
@@ -32,7 +34,7 @@ const Test = () => {
     };
 
     const scrollToTop = () => {
-        topRef.current?.scrollIntoView({ behavior: 'smooth' }); // Desplazarse a la parte superior
+        topRef.current?.scrollIntoView({ behavior: 'smooth' });
     };
 
     const handleAnswer = (optionPoints) => {
