@@ -1,4 +1,4 @@
-import { questionsTest } from "../data/test";
+import { questionsTest } from "../data/Test";
 import { kinesiologicalTipsNivelBajo } from "../data/NivelBajo";
 import { kinesiologicalTipsNivelMedio } from "../data/NivelMedio";
 import { kinesiologicalTipsNivelAlto } from "../data/NivelAlto";
