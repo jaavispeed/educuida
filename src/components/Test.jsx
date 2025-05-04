@@ -2,8 +2,10 @@ import { questionsTest } from "../data/test";
 import { kinesiologicalTipsNivelBajo } from "../data/NivelBajo";
 import { kinesiologicalTipsNivelMedio } from "../data/NivelMedio";
 import { kinesiologicalTipsNivelAlto } from "../data/NivelAlto";
-import { Sparkles, ChevronDown, Lightbulb, ChevronUp } from 'lucide-react';
+import { Sparkles, ChevronDown, Lightbulb, ChevronUp, ArrowLeft } from 'lucide-react';
 import { useRef, useState, useEffect } from 'react';
+import { useNavigate } from "react-router";
+
 
 const Test = () => {
     const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -13,9 +15,16 @@ const Test = () => {
     const [tips, setTips] = useState([]);
     const [resultTitle, setResultTitle] = useState("");
     const [currentPage, setCurrentPage] = useState(0);
+    const navigate = useNavigate();
 
     const tipsRef = useRef(null);
     const topRef = useRef(null); // Ref para la primera sección
+
+    const volver = () => {
+        navigate('/home', {
+            replace: true
+        })
+    }
 
 
     const scrollToTips = () => {
@@ -92,8 +101,14 @@ const Test = () => {
 
     if (!question) {
         return (
-
             <div className="min-h-screen bg-[#F2EFE7] overflow-y-auto scroll-smooth scrollbar-hidden">
+                <button
+                    onClick={volver}
+                    className="fixed top-4 left-4 p-2 rounded-full bg-white shadow-lg hover:bg-[#e0e0e0] transition cursor-pointer"
+                    aria-label="Volver"
+                >
+                    <ArrowLeft className="text-[#006A71]" size={24} />
+                </button>
                 <section ref={topRef} className="h-screen flex flex-col items-center justify-center px-6 space-y-10 bg-[#F2EFE7]">
                     <h2 className="text-5xl md:text-6xl font-bold text-[#006A71] text-center leading-snug">
                         {resultTitle}
@@ -176,6 +191,13 @@ const Test = () => {
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-[#F2EFE7] p-6">
+            <button
+                onClick={volver}
+                className="fixed top-4 left-4 p-2 rounded-full bg-white shadow-lg hover:bg-[#e0e0e0] transition cursor-pointer"
+                aria-label="Volver"
+            >
+                <ArrowLeft className="text-[#006A71]" size={24} />
+            </button>
             <div className="bg-white p-8 rounded-2xl shadow-xl max-w-lg w-full text-center">
                 <h2 className="text-3xl font-semibold text-[#006A71] mb-6">
                     Pregunta {currentQuestion + 1} de {questionsTest.length}
