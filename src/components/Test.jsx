@@ -16,6 +16,8 @@ const Test = () => {
     const [resultTitle, setResultTitle] = useState("");
     const [currentPage, setCurrentPage] = useState(0);
     const navigate = useNavigate();
+    const [nivelLabel, setNivelLabel] = useState({ text: "", color: "" });
+
 
     const tipsRef = useRef(null);
     const topRef = useRef(null); // Ref para la primera sección
@@ -52,6 +54,9 @@ const Test = () => {
         let resultTips = [];
 
         if (points <= 5) {
+            setNivelLabel({ text: "NIVEL BAJO", color: "text-green-600" });
+
+
             title = "Estás bien, sigamos cuidándote!";
             messages = [
                 "Hoy estás estable, ¡Qué bueno!",
@@ -66,6 +71,8 @@ const Test = () => {
                 ...kinesiologicalTipsNivelBajo.pausasActivas
             ];
         } else if (points <= 10) {
+            setNivelLabel({ text: "NIVEL MEDIO", color: "text-yellow-500" });
+
             title = "Haz una pausa, escucha tu cuerpo y mente";
             messages = [
                 "Tu cuerpo y mente te están pidiendo una pausa. Escúchalo con amabilidad.",
@@ -80,6 +87,8 @@ const Test = () => {
                 ...kinesiologicalTipsNivelMedio.pausasActivas
             ];
         } else {
+            setNivelLabel({ text: "NIVEL ALTO", color: "text-red-600" });
+
             title = "Te estás sobrecargando, respira";
             messages = [
                 "Hoy estás cargando mucho, permítete parar un momento.",
@@ -115,6 +124,10 @@ const Test = () => {
                     <ArrowLeft className="text-[#006A71]" size={24} />
                 </button>
                 <section ref={topRef} className="h-screen flex flex-col items-center justify-center px-6 space-y-10 bg-[#F2EFE7]">
+                    <p className={`text-2xl font-bold uppercase ${nivelLabel.color}`}>
+                        {nivelLabel.text}
+                    </p>
+
                     <h2 className="text-5xl md:text-6xl font-bold text-[#006A71] text-center leading-snug">
                         {resultTitle}
                     </h2>
