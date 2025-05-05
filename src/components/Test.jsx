@@ -48,7 +48,6 @@ const Test = () => {
     const handlePauseResume = () => {
         setIsPaused(prev => !prev);  // Cambia el estado de pausa
         if (isPaused) {
-            // Si se va a reanudar, mantén el progreso actual
             setPausedTime(progress / 2);  // Ajusta el progreso al valor actual
         }
     };
@@ -58,15 +57,12 @@ const Test = () => {
         scrollToTop();
     };
 
-
     const volver = () => {
         navigate('/home', {
             replace: true
         })
         window.scrollTo(0, 0); // Esta línea hace que el scroll se mueva a la parte superior.
-
     }
-
 
     const scrollToTips = () => {
         tipsRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -186,11 +182,8 @@ const Test = () => {
                                 </>
                             )}
                         </button>
-
-
                     </div>
                 </div>
-
             );
         }
         return (
@@ -219,15 +212,14 @@ const Test = () => {
                         </p>
                     </div>
 
-
                     <div className="flex flex-col items-center mt-8 ">
                         <span className="text-[#006A71] font-semibold text-xl mb-2 animate-bounce">Recomendaciones</span>
                         <button onClick={scrollToTips} className="animate-bounce cursor-pointer">
                             <ChevronDown size={48} className="text-[#006A71]" />
                         </button>
                     </div>
-
                 </section>
+
                 <hr className="w-1/2 mx-auto my-5 border-t border-gray-400" />
 
                 <section ref={tipsRef} className="min-h-screen flex flex-col items-center justify-center p-6 space-y-6 ">
@@ -263,7 +255,6 @@ const Test = () => {
                             ))}
                     </div>
 
-
                     <div className="flex gap-4 mt-6">
                         <button
                             onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 0))}
@@ -285,7 +276,6 @@ const Test = () => {
                         </button>
                     </div>
                 </section>
-
             </div>
         );
     }
@@ -299,7 +289,6 @@ const Test = () => {
             >
                 <ArrowLeft className="text-[#006A71]" size={24} />
             </button>
-
 
             <div className="bg-white p-8 rounded-2xl shadow-xl max-w-lg w-full text-center">
                 <h2 className="text-3xl font-semibold text-[#006A71] mb-6">
