@@ -2,7 +2,7 @@ import { questionsTest } from "../data/Test";
 import { kinesiologicalTipsNivelBajo } from "../data/NivelBajo";
 import { kinesiologicalTipsNivelMedio } from "../data/NivelMedio";
 import { kinesiologicalTipsNivelAlto } from "../data/NivelAlto";
-import { Sparkles, ChevronDown, Lightbulb, ChevronUp, ArrowLeft } from 'lucide-react';
+import { Sparkles, ChevronDown, Lightbulb, ChevronUp, ArrowLeft, CheckCircle, Pause, Play } from 'lucide-react';
 import { useRef, useState, useEffect } from 'react';
 import { useNavigate } from "react-router";
 
@@ -17,10 +17,47 @@ const Test = () => {
     const [currentPage, setCurrentPage] = useState(0);
     const navigate = useNavigate();
     const [nivelLabel, setNivelLabel] = useState({ text: "", color: "" });
-
+    const [showCompletionMessage, setShowCompletionMessage] = useState(false);
+    const [progress, setProgress] = useState(0);
+    const [isPaused, setIsPaused] = useState(false);
+    const [pausedTime, setPausedTime] = useState(0);  // Estado para guardar el tiempo pausado
 
     const tipsRef = useRef(null);
     const topRef = useRef(null); // Ref para la primera sección
+
+    useEffect(() => {
+        if (!showCompletionMessage) return;
+
+        let current = pausedTime;  // Empezamos desde el tiempo pausado
+        const intervalId = setInterval(() => {
+            if (!isPaused) {
+                current += 1;
+                setProgress(current * 2);  // Actualiza el progreso
+                setPausedTime(current);  // Guarda el progreso
+
+                if (current >= 50) {
+                    clearInterval(intervalId);
+                    navigate('/home', { replace: true });
+                }
+            }
+        }, 100);
+
+        return () => clearInterval(intervalId);
+    }, [showCompletionMessage, isPaused, navigate, pausedTime]);  // Añadir pausedTime como dependencia
+
+    const handlePauseResume = () => {
+        setIsPaused(prev => !prev);  // Cambia el estado de pausa
+        if (isPaused) {
+            // Si se va a reanudar, mantén el progreso actual
+            setPausedTime(progress / 2);  // Ajusta el progreso al valor actual
+        }
+    };
+
+    const finalizar = () => {
+        setShowCompletionMessage(true);
+        scrollToTop();
+    };
+
 
     const volver = () => {
         navigate('/home', {
@@ -114,15 +151,58 @@ const Test = () => {
     }, [question, points]);
 
     if (!question) {
+        if (showCompletionMessage) {
+            return (
+                <div className="min-h-screen flex items-center justify-center bg-[#F2EFE7] px-4">
+                    <div className="max-w-xl w-full bg-white p-10 rounded-2xl shadow-2xl text-center space-y-6">
+                        <CheckCircle className="text-green-500 mx-auto" size={48} />
+                        <h2 className="text-4xl font-bold text-[#006A71]">¡Encuesta completada!</h2>
+                        <p className="text-lg text-gray-700">Gracias por tomarte un momento para ti.</p>
+                        <p className="text-lg text-gray-700">Ya diste el primer paso hacia tu bienestar físico y emocional.</p>
+                        <p className="text-lg text-gray-700">Te animamos a poner en práctica los tips recomendados según tu nivel de sobrecarga.</p>
+                        <p className="text-base italic text-[#006A71]">Cuidarte también es cuidar mejor.</p>
+
+                        {/* Temporizador visual */}
+                        <div className="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
+                            <div
+                                className="bg-[#006A71] h-2 transition-all duration-100"
+                                style={{ width: `${progress}%` }}
+                            />
+                        </div>
+                        <p className="text-sm text-gray-400">Serás redirigido automáticamente...</p>
+                        <button
+                            onClick={handlePauseResume}
+                            className="mt-4 inline-flex items-center justify-center gap-2 px-4 py-2 bg-[#006A71] text-white rounded-full shadow-md hover:bg-[#04878B] transition duration-200"
+                        >
+                            {isPaused ? (
+                                <>
+                                    <Play size={20} />
+                                    Reanudar
+                                </>
+                            ) : (
+                                <>
+                                    <Pause size={20} />
+                                    Pausar
+                                </>
+                            )}
+                        </button>
+
+
+                    </div>
+                </div>
+
+            );
+        }
         return (
             <div className="min-h-screen bg-[#F2EFE7] overflow-y-auto scroll-smooth scrollbar-hidden">
                 <button
-                    onClick={volver}
-                    className="fixed top-4 left-4 p-2 rounded-full bg-white shadow-lg hover:bg-[#e0e0e0] transition cursor-pointer"
-                    aria-label="Volver"
+                    onClick={finalizar}
+                    className="fixed top-4 left-4 flex items-center gap-2 px-4 py-2 bg-white shadow-lg hover:bg-[#e0e0e0] text-[#006A71] font-semibold rounded-full transition cursor-pointer"
                 >
-                    <ArrowLeft className="text-[#006A71]" size={24} />
+                    <CheckCircle size={20} />
+                    Finalizar
                 </button>
+
                 <section ref={topRef} className="h-screen flex flex-col items-center justify-center px-6 space-y-10 bg-[#F2EFE7]">
                     <p className={`text-2xl font-bold uppercase ${nivelLabel.color}`}>
                         {nivelLabel.text}
@@ -148,7 +228,7 @@ const Test = () => {
                     </div>
 
                 </section>
-                <hr class="w-1/2 mx-auto my-5 border-t border-gray-400" />
+                <hr className="w-1/2 mx-auto my-5 border-t border-gray-400" />
 
                 <section ref={tipsRef} className="min-h-screen flex flex-col items-center justify-center p-6 space-y-6 ">
                     <button onClick={scrollToTop} className="mt-8 animate-bounce cursor-pointer">
@@ -205,6 +285,7 @@ const Test = () => {
                         </button>
                     </div>
                 </section>
+
             </div>
         );
     }
@@ -218,6 +299,8 @@ const Test = () => {
             >
                 <ArrowLeft className="text-[#006A71]" size={24} />
             </button>
+
+
             <div className="bg-white p-8 rounded-2xl shadow-xl max-w-lg w-full text-center">
                 <h2 className="text-3xl font-semibold text-[#006A71] mb-6">
                     Pregunta {currentQuestion + 1} de {questionsTest.length}
