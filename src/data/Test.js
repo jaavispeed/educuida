@@ -9,7 +9,7 @@ export const questionsTest = [
       ],
     },
     {
-      question: "¿Has sentido estabilidad emocional hoy?",
+      question: "¿Has sentido irritabilidad  emocional hoy?",
       options: [
         { text: "Sí", points: 0 },
         { text: "No", points: 1 },

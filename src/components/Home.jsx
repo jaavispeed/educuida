@@ -45,7 +45,7 @@ const Home = () => {
           <li className="flex items-start gap-4">
             <Clock3 className="text-[#9ACBD0] mt-1 min-w-[24px] min-h-[24px]" size={28} />
             <span>
-              ¿Últimamente te has sentido física o emocionalmente agotada?
+              ¿Últimamente te has sentido física o emocionalmente agotada/o?
             </span>
           </li>
           <li className="flex items-start gap-4">
@@ -57,7 +57,7 @@ const Home = () => {
           <li className="flex items-start gap-4">
             <SmilePlus className="text-[#9ACBD0] mt-1 min-w-[24px] min-h-[24px]" size={28} />
             <span>
-              Responde este breve cuestionario para descubrir cómo el rol de cuidadora está impactando tu vida.
+              Responde este breve cuestionario para descubrir cómo el rol de cuidador/a está impactando tu vida.
             </span>
           </li>
           <li className="flex items-start gap-4">
