@@ -6,7 +6,6 @@ import { Sparkles, ChevronDown, Lightbulb, ChevronUp, ArrowLeft, CheckCircle, Pa
 import { useRef, useState, useEffect } from 'react';
 import { useNavigate } from "react-router";
 
-
 const Test = () => {
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [points, setPoints] = useState(0);
@@ -20,20 +19,20 @@ const Test = () => {
     const [showCompletionMessage, setShowCompletionMessage] = useState(false);
     const [progress, setProgress] = useState(0);
     const [isPaused, setIsPaused] = useState(false);
-    const [pausedTime, setPausedTime] = useState(0);  // Estado para guardar el tiempo pausado
+    const [pausedTime, setPausedTime] = useState(0);
 
     const tipsRef = useRef(null);
-    const topRef = useRef(null); // Ref para la primera sección
+    const topRef = useRef(null);
 
     useEffect(() => {
         if (!showCompletionMessage) return;
 
-        let current = pausedTime;  // Empezamos desde el tiempo pausado
+        let current = pausedTime;
         const intervalId = setInterval(() => {
             if (!isPaused) {
                 current += 1;
-                setProgress(current * 2);  // Actualiza el progreso
-                setPausedTime(current);  // Guarda el progreso
+                setProgress(current * 2);
+                setPausedTime(current);
 
                 if (current >= 50) {
                     clearInterval(intervalId);
@@ -43,12 +42,12 @@ const Test = () => {
         }, 100);
 
         return () => clearInterval(intervalId);
-    }, [showCompletionMessage, isPaused, navigate, pausedTime]);  // Añadir pausedTime como dependencia
+    }, [showCompletionMessage, isPaused, navigate, pausedTime]);
 
     const handlePauseResume = () => {
-        setIsPaused(prev => !prev);  // Cambia el estado de pausa
+        setIsPaused(prev => !prev);
         if (isPaused) {
-            setPausedTime(progress / 2);  // Ajusta el progreso al valor actual
+            setPausedTime(progress / 2);
         }
     };
 
@@ -61,7 +60,7 @@ const Test = () => {
         navigate('/home', {
             replace: true
         })
-        window.scrollTo(0, 0); // Esta línea hace que el scroll se mueva a la parte superior.
+        window.scrollTo(0, 0);
     }
 
     const scrollToTips = () => {
@@ -88,8 +87,6 @@ const Test = () => {
 
         if (points <= 5) {
             setNivelLabel({ text: "NIVEL BAJO", color: "text-green-600" });
-
-
             title = "Estás bien, sigamos cuidándote!";
             messages = [
                 "Hoy estás estable, ¡Qué bueno!",
@@ -105,7 +102,6 @@ const Test = () => {
             ];
         } else if (points <= 10) {
             setNivelLabel({ text: "NIVEL MEDIO", color: "text-yellow-500" });
-
             title = "Haz una pausa, escucha tu cuerpo y mente";
             messages = [
                 "Tu cuerpo y mente te están pidiendo una pausa. Escúchalo con amabilidad.",
@@ -121,7 +117,6 @@ const Test = () => {
             ];
         } else {
             setNivelLabel({ text: "NIVEL ALTO", color: "text-red-600" });
-
             title = "Te estás sobrecargando, respira";
             messages = [
                 "Hoy estás cargando mucho, permítete parar un momento.",
@@ -157,8 +152,6 @@ const Test = () => {
                         <p className="text-lg text-gray-700">Ya diste el primer paso hacia tu bienestar físico y emocional.</p>
                         <p className="text-lg text-gray-700">Te animamos a poner en práctica los tips recomendados según tu nivel de sobrecarga.</p>
                         <p className="text-base italic text-[#006A71]">Cuidarte también es cuidar mejor.</p>
-
-                        {/* Temporizador visual */}
                         <div className="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
                             <div
                                 className="bg-[#006A71] h-2 transition-all duration-100"
@@ -170,17 +163,7 @@ const Test = () => {
                             onClick={handlePauseResume}
                             className="mt-4 inline-flex items-center justify-center gap-2 px-4 py-2 bg-[#006A71] text-white rounded-full shadow-md hover:bg-[#04878B] transition duration-200"
                         >
-                            {isPaused ? (
-                                <>
-                                    <Play size={20} />
-                                    Reanudar
-                                </>
-                            ) : (
-                                <>
-                                    <Pause size={20} />
-                                    Pausar
-                                </>
-                            )}
+                            {isPaused ? (<><Play size={20} /> Reanudar</>) : (<><Pause size={20} /> Pausar</>)}
                         </button>
                     </div>
                 </div>
@@ -190,28 +173,17 @@ const Test = () => {
             <div className="min-h-screen bg-[#F2EFE7] overflow-y-auto scroll-smooth scrollbar-hidden">
                 <button
                     onClick={finalizar}
-                    className="fixed top-4 left-4 flex items-center gap-2 px-4 py-2 bg-white shadow-lg hover:bg-[#e0e0e0] text-[#006A71] font-semibold rounded-full transition cursor-pointer"
+                    className="fixed top-4 left-4 flex items-center gap-2 px-4 py-2 bg-white shadow-lg hover:bg-[#e0e0e0] text-[#006A71] font-semibold rounded-full transition cursor-pointer z-50"
                 >
-                    <CheckCircle size={20} />
-                    Finalizar
+                    <CheckCircle size={20} /> Finalizar
                 </button>
-
-                <section ref={topRef} className="h-screen flex flex-col items-center justify-center px-6 space-y-10 bg-[#F2EFE7]">
-                    <p className={`text-2xl font-bold uppercase ${nivelLabel.color}`}>
-                        {nivelLabel.text}
-                    </p>
-
-                    <h2 className="text-5xl md:text-6xl font-bold text-[#006A71] text-center leading-snug">
-                        {resultTitle}
-                    </h2>
-
+                <section ref={topRef} className="min-h-screen flex flex-col items-center justify-center px-6 space-y-10 mt-16 bg-[#F2EFE7] pb-32">
+                    <p className={`font-bold uppercase ${nivelLabel.color}`}>{nivelLabel.text}</p>
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#006A71] text-center leading-snug px-2">{resultTitle}</h2>
                     <div className="w-full max-w-2xl p-10 bg-white rounded-2xl shadow-2xl flex flex-col items-center">
                         <Sparkles className="mb-4 text-[#FFC857]" size={48} />
-                        <p className="text-2xl text-[#006A71] text-center font-semibold italic">
-                            “{randomMessage}”
-                        </p>
+                        <p className="text-base sm:text-xl text-[#006A71] text-center font-semibold italic">“{randomMessage}”</p>
                     </div>
-
                     <div className="flex flex-col items-center mt-8 ">
                         <span className="text-[#006A71] font-semibold text-xl mb-2 animate-bounce">Recomendaciones</span>
                         <button onClick={scrollToTips} className="animate-bounce cursor-pointer">
@@ -219,61 +191,40 @@ const Test = () => {
                         </button>
                     </div>
                 </section>
-
                 <hr className="w-1/2 mx-auto my-5 border-t border-gray-400" />
-
                 <section ref={tipsRef} className="min-h-screen flex flex-col items-center justify-center p-6 space-y-6 ">
                     <button onClick={scrollToTop} className="mt-8 animate-bounce cursor-pointer">
                         <ChevronUp size={48} className="text-[#006A71]" />
                     </button>
                     <div className="flex items-center gap-3">
                         <Lightbulb className="text-[#006A71]" size={28} />
-                        <h3 className="text-2xl font-semibold text-[#006A71] text-center">
-                            Recomendaciones de ejercicios
-                        </h3>
+                        <h3 className="text-2xl font-semibold text-[#006A71] text-center">Recomendaciones de ejercicios</h3>
                     </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl w-full">
-                        {tips
-                            .slice(currentPage * 3, currentPage * 3 + 3)
-                            .map((tip, idx) => (
-                                <div
-                                    key={idx}
-                                    className="bg-white rounded-lg shadow-md p-6 flex flex-col items-center text-center max-w-xs mx-auto"
-                                >
-                                    <p className="text-[#006A71] font-medium text-xl mb-4">
-                                        {tip.tip}
-                                    </p>
-                                    {tip.image && (
-                                        <img
-                                            src={tip.image}
-                                            alt={`Ejercicio ${idx}`}
-                                            className="w-full h-48 object-cover rounded-md mb-4"
-                                        />
-                                    )}
-                                </div>
-                            ))}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full px-2">
+                        {tips.slice(currentPage * 3, currentPage * 3 + 3).map((tip, idx) => (
+                            <div key={idx} className="bg-white rounded-lg shadow-md p-6 flex flex-col items-center text-center w-full">
+                                <p className="text-[#006A71] font-medium text-xl mb-4">{tip.tip}</p>
+                                {tip.image && (
+                                    <img
+                                        src={tip.image}
+                                        alt={`Ejercicio ${idx}`}
+                                        className="w-full h-40 sm:h-48 object-cover rounded-md mb-4"
+                                    />
+                                )}
+                            </div>
+                        ))}
                     </div>
-
                     <div className="flex gap-4 mt-6">
                         <button
                             onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 0))}
                             disabled={currentPage === 0}
                             className="px-4 py-2 bg-[#006A71] hover:bg-[#48A6A7] text-white rounded-lg disabled:opacity-50 cursor-pointer"
-                        >
-                            Anterior
-                        </button>
+                        >Anterior</button>
                         <button
-                            onClick={() =>
-                                setCurrentPage((prev) =>
-                                    (prev + 1) * 3 < tips.length ? prev + 1 : prev
-                                )
-                            }
+                            onClick={() => setCurrentPage((prev) => (prev + 1) * 3 < tips.length ? prev + 1 : prev)}
                             disabled={(currentPage + 1) * 3 >= tips.length}
                             className="px-4 py-2 bg-[#006A71] hover:bg-[#48A6A7] text-white rounded-lg disabled:opacity-50 cursor-pointer"
-                        >
-                            Siguiente
-                        </button>
+                        >Siguiente</button>
                     </div>
                 </section>
             </div>
@@ -289,13 +240,11 @@ const Test = () => {
             >
                 <ArrowLeft className="text-[#006A71]" size={24} />
             </button>
-
-            <div className="bg-white p-8 rounded-2xl shadow-xl max-w-lg w-full text-center">
+            <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-xl max-w-lg w-full text-center">
                 <h2 className="text-3xl font-semibold text-[#006A71] mb-6">
                     Pregunta {currentQuestion + 1} de {questionsTest.length}
                 </h2>
                 <p className="text-xl mb-6 text-[#006A71]">{question.question}</p>
-
                 <div className="space-y-4">
                     {question.options.map((option, idx) => (
                         <button
